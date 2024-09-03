@@ -1,3 +1,2 @@
 # Projeto_MC656!!!
-
 Nosso projeto consiste no desenvolvimento de um aplicativo mobile didático e lúdico que ensina crianças a plantar mudas de leguminosas, como o feijão. A ideia surgiu da necessidade de promover o contato das crianças com a natureza e a educação ambiental de forma interativa e acessível. O aplicativo, além de ensinar as etapas do plantio, busca incentivar a curiosidade e a responsabilidade desde cedo, utilizando uma abordagem divertida e educativa. A motivação principal é contribuir para a formação de uma geração mais consciente e conectada com o meio ambiente, através do aprendizado prático e envolvente.
