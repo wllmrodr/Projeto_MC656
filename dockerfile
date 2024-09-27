@@ -5,7 +5,8 @@ FROM node:16
 WORKDIR /app
 
 # Install app dependencies
-COPY package*.json ./
+COPY package.json .
+COPY package-lock.json .
 RUN npm install
 
 # Bundle app source including CSS, HTML, and JSON
