@@ -15,12 +15,26 @@ const PlantWater = () => {
   const [showNextImage, setShowNextImage] = useState(false);
   const [daysPassed, setDaysPassed] = useState(0);  // Estado para o contador de dias
   const [isMonitoring, setIsMonitoring] = useState(false);  // Controle para o monitoramento
+  const [lastWateredTime, setLastWateredTime] = useState(0); // Dias da última rega
+  const [daysSinceLastWatered, setDaysSinceLastWatered] = useState(0); // Dias desde a última rega
+
+  // Estado para armazenar se a planta cresceu
+  const [plantGrown, setPlantGrown] = useState(false);
 
   // Função para avançar as imagens e iniciar o contador de dias
   const handleClick = () => {
     if (currentImageIndex === 0 || currentImageIndex === 2 || currentImageIndex === 4) {
-      setCurrentImageIndex((prevIndex) => prevIndex + 1);
+      setCurrentImageIndex((prevIndex) => {
+        const nextIndex = prevIndex + 1;
+        if (nextIndex === images.length - 1) {
+          setPlantGrown(true); // Define que a planta cresceu
+        }
+        return nextIndex;
+      });
       setShowNextImage(true);  // Inicia a transição da imagem
+      
+      // Armazena o número de dias passados como a última vez que foi regada
+      setLastWateredTime(daysPassed);
     }
     
     // Inicia o monitoramento do tempo ao clicar
@@ -33,7 +47,13 @@ const PlantWater = () => {
   useEffect(() => {
     if (showNextImage) {
       const timer = setTimeout(() => {
-        setCurrentImageIndex((prevIndex) => prevIndex + 1);
+        setCurrentImageIndex((prevIndex) => {
+          const nextIndex = prevIndex + 1;
+          if (nextIndex === images.length - 1) {
+            setPlantGrown(true); // Define que a planta cresceu
+          }
+          return nextIndex;
+        });
         setShowNextImage(false);
       }, 2000);
 
@@ -41,33 +61,54 @@ const PlantWater = () => {
     }
   }, [showNextImage]);
 
-  // Efeito para atualizar o contador de dias a cada 3 segundos
+  // Efeito para atualizar o contador de dias e o tempo desde a última rega
   useEffect(() => {
     let interval;
-    if (isMonitoring) {
+    if (isMonitoring && !plantGrown) { // Para o contador se a planta cresceu
       interval = setInterval(() => {
         setDaysPassed((prevDays) => prevDays + 1);
+
+        // Atualiza os dias desde a última rega
+        if (lastWateredTime !== null) {
+          const daysSinceWatered = daysPassed - lastWateredTime;
+          setDaysSinceLastWatered(daysSinceWatered);
+        }
       }, 3000);  // Incrementa o contador a cada 3 segundos
     }
 
     return () => clearInterval(interval);
-  }, [isMonitoring]);
+  }, [isMonitoring, lastWateredTime, daysPassed, plantGrown]); // Adiciona plantGrown na lista de dependências
 
   return (
     <div>
       <h1>Monitoramento de Regas</h1>
       <p>Dias passados: {daysPassed}</p>
+      <p>Dias desde a última rega: {daysSinceLastWatered}</p>
 
       {/* Exibe a mensagem de recomendação */}
       <p style={{ color: 'green', fontWeight: 'bold' }}>
         Recomenda-se regar a planta a cada três dias.
       </p>
-      
-      <img 
-        src={images[currentImageIndex]} 
-        alt="Current" 
-        style={{ width: '300px', height: '300px' }} 
-      />
+
+      {/* Verifica se a planta morreu ou exibe a imagem */}
+      {daysSinceLastWatered > 4 ? (
+        <p style={{ color: 'red', fontWeight: 'bold' }}>A planta morreu.</p>
+      ) : plantGrown ? (
+        <>
+          <img 
+            src={images[images.length - 1]} 
+            alt="Current" 
+            style={{ width: '300px', height: '300px' }} 
+          />
+          <p style={{ color: 'blue', fontWeight: 'bold' }}>Parabéns, a planta cresceu!</p>
+        </>
+      ) : (
+        <img 
+          src={images[currentImageIndex]} 
+          alt="Current" 
+          style={{ width: '300px', height: '300px' }} 
+        />
+      )}
       
       {(currentImageIndex === 0 || currentImageIndex === 2 || currentImageIndex === 4) && (
         <>
