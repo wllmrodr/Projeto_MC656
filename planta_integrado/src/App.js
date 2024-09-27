@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import PlantInfo from './components/PlantInfo';  // Importar PlantInfo
 import PlantWater from './components/PlantWater';  // Importar PlantWater
-
+//teste git
 function App() {
   return (
     <Router>
