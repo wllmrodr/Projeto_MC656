@@ -1,0 +1,20 @@
+name: Continuous Integration
+
+on: [push, pull_request] # This workflow is triggered on pushes and PRs to the master branch.
+  
+
+jobs:
+  continuous-integration:
+    runs-on: ubuntu-latest  # The job runs on a Ubuntu machine
+
+    steps:  # Steps in this job
+      - uses: actions/checkout@v3   # Checkout(similar to cloning) the repository
+      - name: Using Node.js
+        uses: actions/setup-node@v2
+        with:  # Set the Node.js version to use (argument)
+          node-version: '22.x'
+      - name: run install, build and test
+        run: |
+          npm install
+          npm run build
+          npm run test
