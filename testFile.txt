@@ -1,0 +1,1 @@
+Esse arquivo foi criado com o intuito de testar o workflow Continuous Integration
