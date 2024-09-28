@@ -18,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/info" element={<PlantInfo />} />
           <Route path="/water" element={<PlantWater />} />
+          <Route path="/" element={<PlantWater />} /> {/* Rota inicial */}
         </Routes>
       </div>
     </Router>
