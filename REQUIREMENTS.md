@@ -1,5 +1,3 @@
-# Features a serem desenvolvidas:
-
 # Elicitação de requisitos
 
 ## Primeira elicitação de requisitos: Questionário
