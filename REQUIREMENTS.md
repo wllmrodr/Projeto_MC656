@@ -23,6 +23,25 @@ Para levantar os requisitos, primeiro criamos um questionário no forms, com foc
 - Há mais alguma funcionalidade ou ideia que você acredita que seria útil para o site?
 - Você gostaria de acrescentar algo mais sobre suas expectativas ou preocupações em relação a esse projeto?
 
+As perguntas foram direcionadas à pais de crianças pois questionários direcionados aos usuários finais da aplicação com certeza não seriam proveitosos. Portanto a próxima opção de pessoa a ser entrevistada teria que ser alguém com experiência em lidar com o público infantil. Outra opção de entrevistado seria de pessoas ligadas à área da educação, como professoras, pedagogas ou instrutoras de creche, por exemplo. Entretanto como achar este tipo de pessoa estava se provando se difícil o segundo grupo de pessoas foi recorrido para as entrevistas.
+
+Com isso os seguintes requisitos se provaram os mais essenciais para o funcionamento do projeto:
+
+**Requisitos Funcionais**
+- Exibir conteúdo sobre tipos de plantas, crescimento e funções das árvores, com vídeos curtos e animações. 
+- Incluir recompensas (medalhas virtuais ou pontos) para motivar as crianças a completar etapas.
+- Integrar um sistema de níveis ou conquistas para estimular o interesse contínuo sem excessos.
+- Implementar navegação simplificada com botões grandes, cores atraentes, e sons amigáveis.
+- Adaptar a experiência conforme as faixas etárias dos usuários.
+- Adicionar conteúdos sobre biodiversidade, florestas e fauna para complementar o aprendizado sobre jardinagem.
+
+**Requisitos não funcionais**
+- Implementar recursos para proteção de dados e segurança de navegação.
+- Garantir interface intuitiva com baixa complexidade para facilitar o uso tanto por crianças quanto por adultos.
+- Suporte a dispositivos móveis e acessibilidade para crianças com diferentes habilidades tecnológicas.
+- Otimizar o carregamento dos conteúdos, principalmente vídeos e animações, para um desempenho fluido em várias plataformas.
+
+
 ## Segunda elicitação de requisitos: Benchmarking
 
 Também fizemos o *benchmarking* para a elicitação de requisitos, onde não encontramos necessariamente algum site com a mesma ideia, mas com intenções semelhantes ao ensino de crianças com relação ao plantio.
