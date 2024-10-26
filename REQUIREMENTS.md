@@ -23,7 +23,7 @@ Para levantar os requisitos, primeiro criamos um questionário no forms, com foc
 - Há mais alguma funcionalidade ou ideia que você acredita que seria útil para o site?
 - Você gostaria de acrescentar algo mais sobre suas expectativas ou preocupações em relação a esse projeto?
 
-As perguntas foram direcionadas à pais de crianças pois questionários direcionados aos usuários finais da aplicação com certeza não seriam proveitosos. Portanto a próxima opção de pessoa a ser entrevistada teria que ser alguém com experiência em lidar com o público infantil. Outra opção de entrevistado seria de pessoas ligadas à área da educação, como professoras, pedagogas ou instrutoras de creche, por exemplo. Entretanto como achar este tipo de pessoa estava se provando se difícil o segundo grupo de pessoas foi recorrido para as entrevistas.
+As perguntas foram direcionadas à pais de crianças pois questionários direcionados aos usuários finais da aplicação (as crianças) com certeza não seriam proveitosos. Portanto a próxima opção de pessoa a ser entrevistada teria que ser alguém com experiência em lidar com o público infantil. Outra opção de entrevistado seria de pessoas ligadas à área da educação, como professores, pedagogos ou instrutores de creche, por exemplo. Entretanto como achar este tipo de pessoa estava se provando se difícil o segundo grupo de pessoas foi recorrido para as entrevistas.
 
 Com isso os seguintes requisitos se provaram os mais essenciais para o funcionamento do projeto:
 
