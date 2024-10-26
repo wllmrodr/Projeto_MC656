@@ -23,21 +23,6 @@ Para levantar os requisitos, primeiro criamos um questionário no forms, com foc
 
 As perguntas foram direcionadas à pais de crianças pois questionários direcionados aos usuários finais da aplicação (as crianças) com certeza não seriam proveitosos. Portanto a próxima opção de pessoa a ser entrevistada teria que ser alguém com experiência em lidar com o público infantil. Outra opção de entrevistado seria de pessoas ligadas à área da educação, como professores, pedagogos ou instrutores de creche, por exemplo. Entretanto como achar este tipo de pessoa estava se provando se difícil o segundo grupo de pessoas foi recorrido para as entrevistas.
 
-Com isso os seguintes requisitos se provaram os mais essenciais para o funcionamento do projeto:
-
-**Requisitos Funcionais**
-- Exibir conteúdo sobre tipos de plantas, crescimento e funções das árvores, com vídeos curtos e animações. 
-- Incluir recompensas (medalhas virtuais ou pontos) para motivar as crianças a completar etapas.
-- Integrar um sistema de níveis ou conquistas para estimular o interesse contínuo sem excessos.
-- Implementar navegação simplificada com botões grandes, cores atraentes, e sons amigáveis.
-- Adaptar a experiência conforme as faixas etárias dos usuários.
-- Adicionar conteúdos sobre biodiversidade, florestas e fauna para complementar o aprendizado sobre jardinagem.
-
-**Requisitos não funcionais**
-- Implementar recursos para proteção de dados e segurança de navegação.
-- Garantir interface intuitiva com baixa complexidade para facilitar o uso tanto por crianças quanto por adultos.
-- Suporte a dispositivos móveis e acessibilidade para crianças com diferentes habilidades tecnológicas.
-- Otimizar o carregamento dos conteúdos, principalmente vídeos e animações, para um desempenho fluido em várias plataformas.
 
 
 ## Segunda elicitação de requisitos: Benchmarking
@@ -131,4 +116,20 @@ As features que selecionamos para análise podem contribuir na organização de 
 * Como existem diversos artigos com diferentes níveis de ensino necessário, talvez seja interessante alguma forma de diferenciar o conteúdo por alguma métrica como dificuldade. Outra alternativa seria criar uma arvore do conhecimento para que o usuário consiga acompanhar seu progresso.
 * Nos texto dos artigos em si há diferença de coloração entre diferentes linhas de texto, isso é algo que poderia ser otimizado para chamar mais atenção onde realmente é necessário.
 
+##Requisitos
 
+Com isso, os seguintes requisitos se provaram os mais essenciais para o funcionamento do projeto:
+
+**Requisitos Funcionais**
+- Exibir conteúdo sobre tipos de plantas, crescimento e funções das árvores, com vídeos curtos e animações. 
+- Incluir recompensas (medalhas virtuais ou pontos) para motivar as crianças a completar etapas.
+- Integrar um sistema de níveis ou conquistas para estimular o interesse contínuo sem excessos.
+- Implementar navegação simplificada com botões grandes, cores atraentes, e sons amigáveis.
+- Adaptar a experiência conforme as faixas etárias dos usuários.
+- Adicionar conteúdos sobre biodiversidade, florestas e fauna para complementar o aprendizado sobre jardinagem.
+
+**Requisitos não funcionais**
+- Implementar recursos para proteção de dados e segurança de navegação.
+- Garantir interface intuitiva com baixa complexidade para facilitar o uso tanto por crianças quanto por adultos.
+- Suporte a dispositivos móveis e acessibilidade para crianças com diferentes habilidades tecnológicas.
+- Otimizar o carregamento dos conteúdos, principalmente vídeos e animações, para um desempenho fluido em várias plataformas.
