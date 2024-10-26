@@ -115,7 +115,3 @@ As features que selecionamos para análise podem contribuir na organização de 
 * Nos texto dos artigos em si há diferença de coloração entre diferentes linhas de texto, isso é algo que poderia ser otimizado para chamar mais atenção onde realmente é necessário.
 
 
-
-## Terceira elicitação de requisitos: Brainstorming
-
-Por último foi feita uma reunião onde decidimos que
