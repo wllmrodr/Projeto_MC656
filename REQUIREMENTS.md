@@ -23,6 +23,8 @@ Para levantar os requisitos, foi feito um roteiro de entrevista, com foco nos pa
 
 As perguntas foram direcionadas à pais de crianças pois perguntas direcionados aos usuários finais da aplicação (as crianças) com certeza não seriam proveitosos. Portanto a próxima opção de pessoa a ser entrevistada teria que ser alguém com experiência em lidar com o público infantil. Outra opção de entrevistado seria de pessoas ligadas à área da educação, como professores, pedagogos ou instrutores de creche, por exemplo. Entretanto como achar este tipo de pessoa estava se provando se difícil o segundo grupo de pessoas foi recorrido para as entrevistas.
 
+Outro fato importante a ser lembrado é o fato de que a ênfase foi muito mais direcionada à pessoas que se tornaram pais recentemente, visto que o perfil do público infantil mudou completamente nos últimos 15 anos, com celulares muito mais presentes no cotidiano.
+
 O modelo de entrevista utilizado foi o de funil, visto que como os integrantes do grupo não possuem um conhecimento tão aprofundado dos usuários finais, e como os entrevistados eram conhecidos não era necessário algo que fizesse eles se abrirem como o modelo de pirâmide
 
 Por fim, segue o link da pasta do drive com as respostas resumidas que os entrevistados deram https://drive.google.com/drive/folders/1XInppAA4VIUCoehXpvkrzH9liDU-lfC1?usp=sharing
