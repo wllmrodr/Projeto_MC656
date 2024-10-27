@@ -2,7 +2,7 @@
 
 ## Primeira elicitação de requisitos: Entrevistas
 
-Para levantar os requisitos, primeiro criamos um questionário no forms, com foco nos pais, com as seguintes perguntas:
+Para levantar os requisitos, foi feito um roteiro de entrevista, com foco nos pais, com as seguintes perguntas:
 
 - Nome e idade
 - O seu filho(a) já demonstrou interesse por plantar ou cuidar de plantas? Se sim, como foi a experiência?
