@@ -4,4 +4,5 @@ Nosso projeto consiste no desenvolvimento de um aplicativo mobile didático e l�
 ### Seção de Arquitetura
 ![image](https://github.com/user-attachments/assets/e47ea121-3cc4-46e9-9db0-651b38638a23)
 O MVC é uma das abordagens mais utilizadas, principalmente em aplicações web e mobile, por conseguir separar as responsabilidades e assim facilitando a manutenção e a escalabilidade.
+
 No diagrama C4, a camada superior ficou com a parte de View, que fornecerá a interface para as crianças, a camada do meio com a parte de Controller, que cuida de aspectos como gerenciamento de usuário, gerenciamento de jardim, e cuidado e crescimento das plantas, e a inferior com a parte de Model, que fará a interface com os bancos de dados com as informações sobre os usuários e sobre os modelos de cada planta utilizada.
