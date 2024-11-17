@@ -1,0 +1,28 @@
+/* PlantInfo.css */
+.container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #E7F4E4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 350px;
+    text-align: left;
+    z-index: 1000;
+  }
+  
+  .title {
+    color: #4CAF50;
+    font-size: 22px;
+    margin-bottom: 15px;
+    margin-top: 0;
+  }
+  
+  .list {
+    list-style-type: none;
+    padding: 0;
+    font-size: 16px;
+    color: #333;
+  }
+  
