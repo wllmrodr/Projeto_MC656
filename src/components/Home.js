@@ -1,15 +1,13 @@
 import React from "react";
 import {
-  AppBar,
-  Toolbar,
   Typography,
   Button,
   Box,
 } from "@mui/material";
 import { styled } from "@mui/system";
-import { Link } from "react-router-dom";
-import gardenImage from "../images/homepage-garden-nobg.png";
-import logoImage from "../images/logo.png";
+import { useNavigate } from 'react-router-dom';
+import gardenImage from "../images/garden.png";
+import Header from './Header';
 
 const HeroSection = styled(Box)(({ theme }) => ({
   textAlign: "center",
@@ -40,37 +38,15 @@ const StyledButton = styled(Button)(({ theme }) => ({
 }));
 
 const Home = () => {
+  const navigate = useNavigate(); 
+
+  const handleButtonClick = () => {
+    navigate('/galeria');
+  };
+
   return (
     <div>
-      {/* Cabeçalho */}
-      <AppBar position="static" sx={{ backgroundColor: "#DAE2B6" }}>
-        <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            <img
-              src={logoImage}
-              alt="Logo da aplicação"
-              style={{
-                height: "30px",
-                objectFit: "contain",
-                marginTop: "5px",
-              }}
-            />
-          </Typography>
-          <Button component={Link} to="/" color="inherit" sx={{ color: "#603F26" }}>
-            <strong>Início</strong>
-          </Button>
-          <Button color="inherit" sx={{ color: "#603F26" }}>
-            <strong>Guia de plantio</strong>
-          </Button>
-          <Button color="inherit" sx={{ color: "#603F26" }}>
-            <strong>Galeria de plantas</strong>
-          </Button>
-          <Button color="inherit" sx={{ color: "#603F26" }}>
-            <strong>Jogos</strong>
-          </Button>
-        </Toolbar>
-      </AppBar>
-
+      <Header />
       <HeroSection>
         <HeroImage
           src={gardenImage}
@@ -100,7 +76,7 @@ const Home = () => {
               color: "#FEFAE0",
               "&:hover": { backgroundColor: "#146356" },
             }}
-            onClick={() => alert("Conheça as Plantas!")}
+            onClick={handleButtonClick}
           >
             Conheça as Plantas!
           </StyledButton>
