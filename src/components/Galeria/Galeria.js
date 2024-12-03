@@ -1,10 +1,11 @@
 
 import React from "react";
-import { Card, CardMedia, CardContent, Typography } from "@mui/material";
+import { Card, CardMedia, CardContent, Typography, Box } from "@mui/material";
 import Grid from '@mui/material/Grid2';
 import { Link } from "react-router-dom";
 import PlantasCuriosidades from "../PlantasCuriosidades";
 import Header from '../Header';
+import titleText from "./titulo-secao.png";
 
 const Galeria = () => {
   return (
@@ -12,19 +13,22 @@ const Galeria = () => {
       <Header />
     <div
       style={{
-        backgroundColor: "#FEFAE0",
+        backgroundColor: "#E9F5F5",
         padding: "20px",
         minHeight: "100vh",
       }}
     >
-      <Typography
-        variant="h4"
-        align="center"
-        gutterBottom
-        sx={{ color: "#603F26" }}
-      >
-        Galeria de Plantas
-      </Typography>
+      <Box align="center">
+        <img
+          src={titleText}
+          alt="Logo da aplicação"
+          style={{
+            alignContent: "center",
+            height: "50px",
+            objectFit: "contain",
+          }}
+        />
+      </Box>
       <div
         style={{
           display: "grid",
@@ -37,28 +41,33 @@ const Galeria = () => {
           <Grid item xs={12} sm={6} md={3} key={plant.id}>
             <Card
               sx={{
-                backgroundColor: "#C0C78C",
+                backgroundColor: "#B6D55F",
                 color: "#603F26",
                 textAlign: "center",
               }}
-            >
-              <CardMedia
-                component="img"
-                height="310"
-                image={plant.image}
-                alt={plant.name}
-              />
+            >  
+              <Box p={1}>
+                <CardMedia
+                  component="img"
+                  sx={{
+                    objectFit: "contain",
+                    width: "100%",
+                    height: "auto", 
+                  }}
+                  image={plant.image}
+                  alt={plant.name}
+                />
+              </Box>
               <CardContent>
                 <Typography variant="h6" component="div">
-                  {plant.name}
+                  <strong>{plant.name}</strong>
                 </Typography>
                 <Link
                   to={`/galeria/${plant.id}`}
                   style={{
                     textDecoration: "none",
                     color: "#603F26",
-                    fontWeight: "bold",
-                    fontFamily: '"Pacifico", cursive',
+                    fontFamily: "'Roboto', sans-serif" 
                   }}
                 >
                   Ver detalhes
