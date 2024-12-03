@@ -1,28 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
-import logoImage from "../images/logo.png";
 
 const Header = () => {
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#DAE2B6" }}>
+    <AppBar position="static" sx={{ borderBottomLeftRadius: '10px', borderBottomRightRadius: '10px', overflow: "hidden", backgroundColor: "#B6D55F" }}>
       <Toolbar>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          <img
+          Logo
+          {/*<img
             src={logoImage}
             alt="Logo da aplicação"
             style={{
-              height: "30px",
+              height: "50px",
               objectFit: "contain",
-              marginTop: "5px",
             }}
-          />
+          />*/}
         </Typography>
-        <Button component={Link} to="/" color="inherit" sx={{ color: "#603F26" }}>
-          <strong>Início</strong>
+        <Button component={Link} to="/" color="inherit" sx={{ color: "#603F26", textTransform: 'none' }}>
+          <strong>🌿 Início</strong>
         </Button>
-        <Button color="inherit" sx={{ color: "#603F26" }}>
-          <strong>Login</strong>
+        <Button color="inherit" sx={{ color: "#603F26", textTransform: 'none' }}>
+          <strong>🌿 Login</strong>
         </Button>
       </Toolbar>
     </AppBar>

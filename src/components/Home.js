@@ -1,35 +1,24 @@
 import React from "react";
 import {
-  Typography,
   Button,
   Box,
+  Paper,
 } from "@mui/material";
 import { styled } from "@mui/system";
 import { useNavigate } from 'react-router-dom';
-import gardenImage from "../images/garden.png";
+import Grid from '@mui/material/Grid2';
 import Header from './Header';
+import gardenRight from "../images/home-right.png";
+import homeText from "../images/home-text.png";
 
 const HeroSection = styled(Box)(({ theme }) => ({
   textAlign: "center",
+  backgroundColor: "#E9F5F5",
+  color: "#603F26",
   padding: "50px 0",
-  backgroundColor: "#FCF8E8",
-  color: "#603F26",
+  marginTop: "5px",
+  borderRadius: "10px"
 }));
-
-const HeroImage = styled("img")({
-  maxWidth: "100%",
-  height: "auto",
-  marginBottom: "20px",
-});
-
-const TextoPrincipal = styled(Typography)({
-  fontFamily: '"Pacifico", cursive',
-  fontSize: "2rem",
-  lineHeight: "1.5",
-  color: "#603F26",
-  textShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)",
-  marginBottom: "20px",
-});
 
 const StyledButton = styled(Button)(({ theme }) => ({
   fontWeight: "bold",
@@ -48,42 +37,45 @@ const Home = () => {
     <div>
       <Header />
       <HeroSection>
-        <HeroImage
-          src={gardenImage}
-          alt="Ilustração de uma criança em um jardim de plantas"
-        />
-        <TextoPrincipal variant="h4" gutterBottom>
-          Aprenda a plantar, cuidar e se divertir com o mundo das plantas!
-        </TextoPrincipal>
-        <Box mt={2}>
-          {/* remover alertas assim que desenvolver as paginas */}
-          <StyledButton
-            variant="contained"
-            sx={{
-              backgroundColor: "#9D5353",
-              color: "#FEFAE0",
-              "&:hover": { backgroundColor: "#146356" },
-              marginRight: "10px",
-            }}
-            onClick={() => alert("Comece Agora!")}
-          >
-            Comece Agora!
-          </StyledButton>
-          <StyledButton
-            variant="contained"
-            sx={{
-              backgroundColor: "#9D5353",
-              color: "#FEFAE0",
-              "&:hover": { backgroundColor: "#146356" },
-            }}
-            onClick={handleButtonClick}
-          >
-            Conheça as Plantas!
-          </StyledButton>
-        </Box>
+        <Grid container style={{ height: '100vh' }}>
+          <Grid container item xs={6} direction="column" style={{ height: '100%', width: '50%' }}>
+            <Grid item style={{ flex: 1 }}>
+              <Paper elevation={0} style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent', flexDirection: "column", gap: "30px" }}>
+                <img
+                  src={homeText}
+                  alt="Imagem contendo o texto 'Aprenda a plantar, cuidar e se divertir com o mundo das plantas!'"
+                  style={{ width: '80%', height: 'auto' }}
+                  />
+                <StyledButton
+                variant="contained"
+                sx={{
+                  backgroundColor: "#146356",
+                  width: '40%',
+                  color: "#FEFAE0",
+                  fontSize: { xs: "0.7rem", sm: "0.8rem", md: "0.9rem" },
+                  "&:hover": { backgroundColor: "#B6D55F", color: "#146356" },
+                }}
+                onClick={handleButtonClick}
+              >
+                Comece agora!
+              </StyledButton>
+              </Paper>
+            </Grid>
+          </Grid>
+
+          <Grid item xs={6} style={{ height: '100%', width: '50%' }}>
+            <Paper elevation={0} style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent' }}>
+              <img
+                src={gardenRight}
+                alt="Imagem contendo a ilustração de uma árvores e duas crianças com um cachorro em frente."
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                />
+            </Paper>
+          </Grid>
+        </Grid>
       </HeroSection>
     </div>
-  );
+    );
 };
 
 export default Home;

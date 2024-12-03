@@ -14,7 +14,7 @@ const DetalhesPlantas = () => {
       <Header />
       <div
           style={{
-            backgroundColor: "#FEFAE0",
+            backgroundColor: "#E9F5F5",
             padding: "20px",
           }}
         >
