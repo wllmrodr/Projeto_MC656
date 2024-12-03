@@ -21,6 +21,9 @@ const Header = () => {
           <strong>🌿 Início</strong>
         </Button>
         <Button color="inherit" sx={{ color: "#603F26", textTransform: 'none' }}>
+          <strong>🌿 Jogos</strong>
+        </Button>
+        <Button color="inherit" sx={{ color: "#603F26", textTransform: 'none' }}>
           <strong>🌿 Login</strong>
         </Button>
       </Toolbar>
