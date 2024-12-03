@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import PlantInfo from './components/PlantInfo'; // Importar PlantInfo
@@ -15,15 +16,13 @@ function App() {
             <li><Link to="/water">Monitoramento de Regas</Link></li>
           </ul>
         </nav>
+=======
+import React from "react";
+import AppRoutes from "./AppRoutes";
+>>>>>>> a978a2d4b01c8f953f621875fba1557de81259ce
 
-        <Routes>
-          <Route path="/info" element={<PlantInfo />} />
-          <Route path="/water" element={<PlantWater />} />
-          <Route path="/" element={<PlantWater />} /> {/* Rota inicial */}
-        </Routes>
-      </div>
-    </Router>
-  );
+function App() {
+  return <AppRoutes />;
 }
 
 export default App;
