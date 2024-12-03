@@ -41,8 +41,8 @@ const Galeria = () => {
           <Grid item xs={12} sm={6} md={3} key={plant.id}>
             <Card
               sx={{
-                backgroundColor: "#B6D55F",
-                color: "#603F26",
+                backgroundColor: "#603F26",
+                color: "#E9F5F5",
                 textAlign: "center",
               }}
             >  
@@ -66,7 +66,7 @@ const Galeria = () => {
                   to={`/galeria/${plant.id}`}
                   style={{
                     textDecoration: "none",
-                    color: "#603F26",
+                    color: "#E9F5F5",
                     fontFamily: "'Roboto', sans-serif" 
                   }}
                 >
