@@ -56,7 +56,6 @@ const JogoCorrespondencia = () => {
   };
 
   useEffect(() => {
-      // eslint-disable-next-line no-unused-vars
     embaralharPlantas();
   }, []);
 
