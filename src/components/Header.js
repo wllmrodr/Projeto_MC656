@@ -1,77 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, Button } from '@mui/material';
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import firebaseApp from "../firebase-config";
+import { Link } from "react-router-dom";
+import React from "react";
 
 const Header = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const auth = getAuth(firebaseApp);
-
-    // verificando se o usuario este autenticado
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setIsAuthenticated(true);
-      } else {
-        setIsAuthenticated(false);
-      }
-    });
-
-    return () => unsubscribe();
-  }, []);
-
-  const handleLogout = () => {
-    const auth = getAuth(firebaseApp);
-    signOut(auth)
-      .then(() => {
-        setIsAuthenticated(false);
-        navigate("/"); 
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   return (
-    <AppBar position="static" sx={{ borderBottomLeftRadius: '10px', borderBottomRightRadius: '10px', overflow: "hidden", backgroundColor: "#B6D55F" }}>
-      <Toolbar>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          Logo
-          {/*<img
-            src={logoImage}
-            alt="Logo da aplicação"
-            style={{
-              height: "50px",
-              objectFit: "contain",
-            }}
-          />*/}
-        </Typography>
-        <Button component={Link} to="/" color="inherit" sx={{ color: "#603F26", textTransform: 'none' }}>
-          <strong>🌿 Início</strong>
-        </Button>
-        {isAuthenticated ? (
-          // header para usuario logado
-          <>
-          <Button color="inherit" component={Link} to="/jogos" sx={{ color: "#603F26", textTransform: 'none' }}>
-            <strong>🌿 Jogos</strong>
-          </Button>
-          <Button color="inherit" onClick={handleLogout} sx={{ color: "#603F26", textTransform: 'none' }}>
-            <strong>Logout</strong>
-          </Button>
-          </>
-        ) : (
-          // header para usuario deslogado
-          <>
-            <Button color="inherit" component={Link} to="/login" sx={{ color: "#603F26", textTransform: 'none' }}>
-              <strong>Login</strong>
-            </Button>
-          </>
-        )}
-      </Toolbar>
-    </AppBar>
+    <header style={{ padding: "10px", backgroundColor: "#146356" }}>
+      <nav>
+        <ul style={{ listStyleType: "none", display: "flex", gap: "15px" }}>
+          <li>
+            <Link to="/" style={{ color: "white", textDecoration: "none" }}>Home</Link>
+          </li>
+          <li>
+            <Link to="/galeria" style={{ color: "white", textDecoration: "none" }}>Galeria</Link>
+          </li>
+          <li>
+            <Link to="/meu-jardim" style={{ color: "white", textDecoration: "none" }}>
+              <button style={{ backgroundColor: "#4CAF50", color: "white", padding: "10px 20px", border: "none", borderRadius: "5px" }}>
+                Meu Jardim
+              </button>
+            </Link>
+          </li>
+          <li>
+            <Link to="/login" style={{ color: "white", textDecoration: "none" }}>Login</Link>
+          </li>
+        </ul>
+      </nav>
+    </header>
   );
 };
 

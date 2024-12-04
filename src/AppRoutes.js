@@ -8,6 +8,7 @@ import RotaProtegida from "./RotaProtegida";
 import Jogos from "./components/Jogos/Jogos";
 import JogoMemoria from "./components/Jogos/Memoria/JogoMemoria";
 import JogoCorrespondencia from "./components/Jogos/Correspondencia/JogoCorrespondencia";
+import MeuJardim from "./components/MeuJardim"; // Importa o componente MeuJardim
 
 const AppRoutes = () => {
   return (
@@ -18,24 +19,10 @@ const AppRoutes = () => {
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/galeria" element={<Galeria />} />
         <Route path="/galeria/:id" element={<DetalhesPlantas />} />
-        <Route path="/jogos"
-          element={
-            <RotaProtegida>
-              <Jogos />
-            </RotaProtegida>
-          }/>
-        <Route path="/jogos/memoria"
-          element={
-          <RotaProtegida>
-            <JogoMemoria />
-          </RotaProtegida>
-          }/>
-        <Route path="/jogos/correspondencia"
-          element={
-          <RotaProtegida>
-            <JogoCorrespondencia />
-          </RotaProtegida>
-          }/>
+        <Route path="/meu-jardim" element={<RotaProtegida><MeuJardim /></RotaProtegida>} />  {/* Rota para Meu Jardim */}
+        <Route path="/jogos" element={<RotaProtegida><Jogos /></RotaProtegida>} />
+        <Route path="/jogos/memoria" element={<RotaProtegida><JogoMemoria /></RotaProtegida>} />
+        <Route path="/jogos/correspondencia" element={<RotaProtegida><JogoCorrespondencia /></RotaProtegida>} />
       </Routes>
     </Router>
   );
