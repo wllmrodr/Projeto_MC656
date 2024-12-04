@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from 'react-router-dom';
-// eslint-disable-next-line no-unused-vars
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import React, { useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import firebaseApp from "../../firebase-config";
 
 const Login = () => {
@@ -17,7 +16,6 @@ const Login = () => {
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // eslint-disable-next-line no-unused-vars
         const user = userCredential.user;
         navigate("/");
       })

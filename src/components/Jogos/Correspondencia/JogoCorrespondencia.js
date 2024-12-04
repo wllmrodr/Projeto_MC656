@@ -6,7 +6,6 @@ import Header from '../../Header';
 import PlantasCuriosidades from '../../PlantasCuriosidades.js';
 
 const JogoCorrespondencia = () => {
-  // eslint-disable-next-line no-unused-vars
   const [detalhes, setDetalhes] = useState([]);
   const [imagens, setImagens] = useState([]);
   const [detalhesEmbaralhados, setDetalhesEmbaralhados] = useState([]);
@@ -14,7 +13,6 @@ const JogoCorrespondencia = () => {
   const [selecionadoDetail, setSelecionadoDetail] = useState(null);
   const [selecionadoImagem, setSelecionadoImagem] = useState(null);
   const [correspondencias, setCorrespondencias] = useState({});
-  // eslint-disable-next-line no-unused-vars
   const [cores, setCores] = useState(['#FFD7EE', '#CEEEF8', '#E9F9E5', '#FEF1AB', '#D0C3F1']);
   const [erro, setErro] = useState(null);
 
