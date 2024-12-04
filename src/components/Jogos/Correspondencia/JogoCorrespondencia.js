@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react';
-import PlantasCuriosidades from '../../PlantasCuriosidades.js';
-import Header from '../../Header';
-import { Button, Typography, Box, Paper } from '@mui/material';
+import { Box, Button, Paper, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { styled } from "@mui/system";
+import { useEffect, useState } from 'react';
+import Header from '../../Header';
+import PlantasCuriosidades from '../../PlantasCuriosidades.js';
 
 const JogoCorrespondencia = () => {
+  // eslint-disable-next-line no-unused-vars
   const [detalhes, setDetalhes] = useState([]);
   const [imagens, setImagens] = useState([]);
   const [detalhesEmbaralhados, setDetalhesEmbaralhados] = useState([]);
@@ -13,6 +14,7 @@ const JogoCorrespondencia = () => {
   const [selecionadoDetail, setSelecionadoDetail] = useState(null);
   const [selecionadoImagem, setSelecionadoImagem] = useState(null);
   const [correspondencias, setCorrespondencias] = useState({});
+  // eslint-disable-next-line no-unused-vars
   const [cores, setCores] = useState(['#FFD7EE', '#CEEEF8', '#E9F9E5', '#FEF1AB', '#D0C3F1']);
   const [erro, setErro] = useState(null);
 
@@ -53,6 +55,7 @@ const JogoCorrespondencia = () => {
     setErro(null);
   };
 
+  // eslint-disable-next-line no-unused-vars
   useEffect(() => {
     embaralharPlantas();
   }, []);

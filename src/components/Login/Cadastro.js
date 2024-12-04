@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import { TextField, Button, Box, Typography, Container } from "@mui/material";
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
+// eslint-disable-next-line no-unused-vars
+import { Box, Button, TextField, Typography } from "@mui/material";
+import { createUserWithEmailAndPassword, getAuth, sendEmailVerification, updateProfile } from "firebase/auth";
 import firebaseApp from "../../firebase-config";
 
 const auth = getAuth(firebaseApp);
