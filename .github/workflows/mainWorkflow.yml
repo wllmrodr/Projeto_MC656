@@ -4,9 +4,11 @@ on:           # This workflow is triggered on pushes and PRs to the master branc
   push:
     branches:
       - main
+      - develop
   pull_request:
     branches:
       - main
+      - develop
   
 
 jobs:
