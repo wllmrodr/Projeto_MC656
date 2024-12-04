@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardMedia, Typography, Grid } from "@mui/material";
+import { getAuth } from "firebase/auth";
+
+// Função para obter o userId e nome do usuário do Firebase
+const getUserInfo = () => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  return user ? { userId: user.uid, nome: user.displayName || "Usuário" } : { userId: null, nome: "Usuário" };
+};
 
 // Função para recuperar plantas do localStorage com base no usuário
 const getPlantasDoUsuario = (userId) => {
@@ -12,18 +20,31 @@ const salvarPlantasDoUsuario = (userId, plantas) => {
   localStorage.setItem(`plantas_${userId}`, JSON.stringify(plantas));
 };
 
-const MeuJardim = ({ userId }) => {
+const MeuJardim = () => {
   const [plantas, setPlantas] = useState([]);
+  const [userId, setUserId] = useState(null);
+  const [usuarioNome, setUsuarioNome] = useState("Usuário"); // Estado para armazenar o nome do usuário
 
   useEffect(() => {
-    // Carrega as plantas do usuário atual ao montar o componente
-    const plantasDoUsuario = getPlantasDoUsuario(userId);
-    setPlantas(plantasDoUsuario);
+    // Recupera o userId e o nome do usuário assim que o componente é montado
+    const { userId, nome } = getUserInfo();
+    if (userId) {
+      setUserId(userId);
+      setUsuarioNome(nome);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (userId) {
+      // Carrega as plantas do usuário atual ao montar o componente
+      const plantasDoUsuario = getPlantasDoUsuario(userId);
+      setPlantas(plantasDoUsuario);
+    }
   }, [userId]);
 
   // Exemplo para inicializar o jardim do usuário com dados fixos na primeira vez
   useEffect(() => {
-    if (plantas.length === 0) {
+    if (userId && plantas.length === 0) {
       const plantasIniciais = [
         {
           id: 1,
@@ -53,7 +74,7 @@ const MeuJardim = ({ userId }) => {
         padding: "20px", // Espaçamento interno para afastar os elementos das bordas
       }}
     >
-      <h1 style={{ textAlign: "center", color: "#146356" }}>Meu Jardim</h1>
+      <h1 style={{ textAlign: "center", color: "#146356" }}>Jardim de {usuarioNome}</h1> {/* Exibe o nome do usuário */}
       <Grid container spacing={3}>
         {plantas.map((planta) => (
           <Grid item xs={12} sm={6} md={4} key={planta.id}>
