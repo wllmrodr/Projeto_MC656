@@ -1,39 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardMedia, Typography, Grid } from "@mui/material";
 
-// Dados das plantas (estático ou poderia vir de uma API/Firestore)
-const plantas = [
-  {
-    id: 1,
-    nome: "Planta 1",
-    foto: "https://via.placeholder.com/150",
-    dataNascimento: "01/12/2024",
-    ultimaRega: "03/12/2024",
-  },
-  {
-    id: 2,
-    nome: "Planta 2",
-    foto: "https://via.placeholder.com/150",
-    dataNascimento: "15/11/2024",
-    ultimaRega: "01/12/2024",
-  },
-  {
-    id: 3,
-    nome: "Planta 3",
-    foto: "https://via.placeholder.com/150",
-    dataNascimento: "20/10/2024",
-    ultimaRega: "29/11/2024",
-  },
-  {
-    id: 12,
-    nome: "Planta 12",
-    foto: "https://via.placeholder.com/150",
-    dataNascimento: "05/09/2024",
-    ultimaRega: "30/11/2024",
-  },
-];
+// Função para recuperar plantas do localStorage com base no usuário
+const getPlantasDoUsuario = (userId) => {
+  const data = localStorage.getItem(`plantas_${userId}`);
+  return data ? JSON.parse(data) : [];
+};
 
-const MeuJardim = () => {
+// Função para salvar plantas no localStorage
+const salvarPlantasDoUsuario = (userId, plantas) => {
+  localStorage.setItem(`plantas_${userId}`, JSON.stringify(plantas));
+};
+
+const MeuJardim = ({ userId }) => {
+  const [plantas, setPlantas] = useState([]);
+
+  useEffect(() => {
+    // Carrega as plantas do usuário atual ao montar o componente
+    const plantasDoUsuario = getPlantasDoUsuario(userId);
+    setPlantas(plantasDoUsuario);
+  }, [userId]);
+
+  // Exemplo para inicializar o jardim do usuário com dados fixos na primeira vez
+  useEffect(() => {
+    if (plantas.length === 0) {
+      const plantasIniciais = [
+        {
+          id: 1,
+          nome: "Planta 1 - exemplo",
+          foto: "https://via.placeholder.com/150",
+          dataNascimento: "01/12/2024",
+          ultimaRega: "03/12/2024",
+        },
+        {
+          id: 2,
+          nome: "Planta 2 - exemplo",
+          foto: "https://via.placeholder.com/150",
+          dataNascimento: "15/11/2024",
+          ultimaRega: "01/12/2024",
+        },
+      ];
+      salvarPlantasDoUsuario(userId, plantasIniciais);
+      setPlantas(plantasIniciais);
+    }
+  }, [plantas, userId]);
+
   return (
     <div
       style={{
