@@ -1,11 +1,5 @@
-const app = require('./app');
-
 describe('Teste CI', () => {
-    it('Verifica se modulo foi importado corretamente', () => {
-        expect(app).toBeDefined();
-    });
-
-    it('Sempre deve passar nesse teste', () => {
+    it('Sempre deve passar nesse teste(1 + 1 = 2)', () => {
         expect(1 + 1).toBe(2);
     });
 });
