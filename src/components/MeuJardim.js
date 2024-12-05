@@ -144,7 +144,6 @@ const MeuJardim = () => {
                 </CardContent>
               </Card>
               <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
-                <MenuItem onClick={handleMenuClose}>Editar</MenuItem>
                 <MenuItem onClick={() => setOpenRegaDialog(true)}>Adicionar Nova Rega</MenuItem>
                 <MenuItem onClick={handleDeletePlanta}>Excluir</MenuItem>
               </Menu>
