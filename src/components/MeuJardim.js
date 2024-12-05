@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Card, CardContent, CardMedia, Typography, Grid } from "@mui/material";
+// eslint-disable-next-line
+import { Card, CardContent, CardMedia, Grid, Typography } from "@mui/material";
 import { getAuth } from "firebase/auth";
+import React, { useEffect, useState } from "react";
+import Header from "./Header"; // Importa o componente Header
 
 // Função para obter o userId e nome do usuário do Firebase
 const getUserInfo = () => {
@@ -67,13 +69,8 @@ const MeuJardim = () => {
   }, [plantas, userId]);
 
   return (
-    <div
-      style={{
-        backgroundColor: "#E3F2FD", // Azul claro
-        minHeight: "100vh", // Garante que o fundo cubra toda a altura da tela
-        padding: "20px", // Espaçamento interno para afastar os elementos das bordas
-      }}
-    >
+    <div>
+      <Header />
       <h1 style={{ textAlign: "center", color: "#146356" }}>Jardim de {usuarioNome}</h1> {/* Exibe o nome do usuário */}
       <Grid container spacing={3}>
         {plantas.map((planta) => (

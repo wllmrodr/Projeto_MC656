@@ -1,15 +1,15 @@
-import React from "react";
 import {
-  Button,
   Box,
+  Button,
   Paper,
 } from "@mui/material";
-import { styled } from "@mui/system";
-import { useNavigate } from 'react-router-dom';
 import Grid from '@mui/material/Grid2';
-import Header from './Header';
+import { styled } from "@mui/system";
+import React from "react";
+import { useNavigate } from 'react-router-dom';
 import gardenRight from "../images/home-right.png";
 import homeText from "../images/home-text.png";
+import Header from './Header';
 
 const HeroSection = styled(Box)(({ theme }) => ({
   textAlign: "center",
@@ -30,7 +30,7 @@ const Home = () => {
   const navigate = useNavigate(); 
 
   const handleButtonClick = () => {
-    navigate('/galeria');
+    navigate('/login');
   };
 
   return (

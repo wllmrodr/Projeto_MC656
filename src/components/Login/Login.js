@@ -3,9 +3,11 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import firebaseApp from "../../firebase-config";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { setIsLoggedIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -16,8 +18,10 @@ const Login = () => {
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
+        // eslint-disable-next-line no-unused-vars
         const user = userCredential.user;
-        navigate("/");
+        setIsLoggedIn(true);
+        navigate("/galeria");
       })
       .catch((error) => {
         const errorMessage = error.message;
