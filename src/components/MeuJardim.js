@@ -1,23 +1,35 @@
 import React, { useState, useEffect } from "react";
-import { Card, CardContent, CardMedia, Typography, Grid } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Grid,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
+} from "@mui/material";
 import { getAuth } from "firebase/auth";
-import Header from "../components/Header"; // Ajuste o caminho se necessário
+import Header from "../components/Header";
 
-
-// Função para obter o userId e nome do usuário do Firebase
 const getUserInfo = () => {
   const auth = getAuth();
   const user = auth.currentUser;
   return user ? { userId: user.uid, nome: user.displayName || "Usuário" } : { userId: null, nome: "Usuário" };
 };
 
-// Função para recuperar plantas do localStorage com base no usuário
 const getPlantasDoUsuario = (userId) => {
   const data = localStorage.getItem(`plantas_${userId}`);
   return data ? JSON.parse(data) : [];
 };
 
-// Função para salvar plantas no localStorage
 const salvarPlantasDoUsuario = (userId, plantas) => {
   localStorage.setItem(`plantas_${userId}`, JSON.stringify(plantas));
 };
@@ -26,6 +38,38 @@ const MeuJardim = () => {
   const [plantas, setPlantas] = useState([]);
   const [userId, setUserId] = useState(null);
   const [usuarioNome, setUsuarioNome] = useState("Usuário");
+  const [openDialog, setOpenDialog] = useState(false);
+  const [novaPlanta, setNovaPlanta] = useState({ nome: "", especie: "", foto: "" });
+
+  const especiesDisponiveis = [
+    "Alface",
+    "Alho",
+    "Cebolinha",
+    "Cenoura",
+    "Ervilha",
+    "Feijão",
+    "Girassol",
+    "Manjericão",
+    "Menta",
+    "Morango",
+    "Salsa",
+    "Tomate",
+  ];
+
+  const fotosEspecies = {
+    "Alface": "/images/plantas/alface.jpg",
+    "Alho": "/images/plantas/alho.jpg",
+    "Cebolinha": "/images/plantas/cebolinha.jpg",
+    "Cenoura": "/images/plantas/cenoura.jpg",
+    "Ervilha": "/images/plantas/ervilha.jpg",
+    "Feijão": "/images/plantas/feijao.jpg",
+    "Girassol": "/images/plantas/girassol.jpg",
+    "Manjericão": "/images/plantas/manjericao.jpg",
+    "Menta": "/images/plantas/menta.jpg",
+    "Morango": "/images/plantas/morango.jpg",
+    "Salsa": "/images/plantas/salsa.jpg",
+    "Tomate": "/images/plantas/tomate.jpg",
+  };
 
   useEffect(() => {
     const { userId, nome } = getUserInfo();
@@ -42,32 +86,24 @@ const MeuJardim = () => {
     }
   }, [userId]);
 
-  useEffect(() => {
-    if (userId && plantas.length === 0) {
-      const plantasIniciais = [
-        {
-          id: 1,
-          nome: "Planta 1 - exemplo",
-          foto: "/images/plantas/alface.jpg",
-          dataNascimento: "01/12/2024",
-          ultimaRega: "03/12/2024",
-        },
-        {
-          id: 2,
-          nome: "Planta 2 - exemplo",
-          foto: "https://via.placeholder.com/150",
-          dataNascimento: "15/11/2024",
-          ultimaRega: "01/12/2024",
-        },
-      ];
-      salvarPlantasDoUsuario(userId, plantasIniciais);
-      setPlantas(plantasIniciais);
-    }
-  }, [plantas, userId]);
+  const handleAddPlanta = () => {
+    const novaPlantaObj = {
+      id: plantas.length + 1,
+      nome: novaPlanta.nome,
+      foto: fotosEspecies[novaPlanta.especie] || "/images/plantas/default.jpg",
+      dataNascimento: new Date().toISOString().split("T")[0],
+      ultimaRega: new Date().toISOString().split("T")[0],
+      especie: novaPlanta.especie,
+    };
+    const novasPlantas = [...plantas, novaPlantaObj];
+    salvarPlantasDoUsuario(userId, novasPlantas);
+    setPlantas(novasPlantas);
+    setOpenDialog(false);
+    setNovaPlanta({ nome: "", especie: "", foto: "" });
+  };
 
   return (
     <div>
-      {/* Inclui o Header */}
       <Header />
       <div
         style={{
@@ -100,7 +136,7 @@ const MeuJardim = () => {
                     {planta.nome}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    ID: {planta.id}
+                    Espécie: {planta.especie}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     Data de Nascimento: {planta.dataNascimento}
@@ -112,7 +148,61 @@ const MeuJardim = () => {
               </Card>
             </Grid>
           ))}
+          <Grid item xs={12} sm={6} md={4}>
+            <Card
+              sx={{
+                maxWidth: 345,
+                backgroundColor: "#B3E5FC",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
+                height: "180px",
+              }}
+            >
+              <Typography gutterBottom variant="h5" component="div">
+                Nova Planta
+              </Typography>
+              <Button variant="contained" color="primary" onClick={() => setOpenDialog(true)}>
+                Adicionar
+              </Button>
+            </Card>
+          </Grid>
         </Grid>
+        <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+          <DialogTitle>Adicionar Nova Planta</DialogTitle>
+          <DialogContent>
+            <FormControl fullWidth margin="normal">
+              <InputLabel id="especie-label">Espécie</InputLabel>
+              <Select
+                labelId="especie-label"
+                value={novaPlanta.especie}
+                onChange={(e) => setNovaPlanta({ ...novaPlanta, especie: e.target.value })}
+              >
+                {especiesDisponiveis.map((especie) => (
+                  <MenuItem key={especie} value={especie}>
+                    {especie}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <TextField
+              fullWidth
+              margin="normal"
+              label="Nome da Planta"
+              value={novaPlanta.nome}
+              onChange={(e) => setNovaPlanta({ ...novaPlanta, nome: e.target.value })}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setOpenDialog(false)}>Cancelar</Button>
+            <Button onClick={handleAddPlanta} variant="contained" color="primary">
+              Adicionar
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     </div>
   );
