@@ -1,12 +1,15 @@
-import { Typography, Box, Paper, Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import CloseIcon from '@mui/icons-material/Close';
+import { Box, Button, Dialog, DialogContent, DialogTitle, IconButton, Paper, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid2';
-import { useParams } from 'react-router-dom';
-import PlantasCuriosidades from "../PlantasCuriosidades";
-import Header from '../Header';
 import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import Header from '../Header';
+import PlantasCuriosidades from "../PlantasCuriosidades";
 
 const DetalhesPlantas = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const plant = PlantasCuriosidades.find((p) => p.id === parseInt(id));
   
   const [openModal, setOpenModal] = useState(false);
@@ -19,6 +22,10 @@ const DetalhesPlantas = () => {
     setOpenModal(false);
   };
 
+  const handleBackClick = () => {
+    navigate('/galeria');
+  };
+
   return (
     <div>
       <Header />
@@ -26,8 +33,15 @@ const DetalhesPlantas = () => {
         style={{
           backgroundColor: "#E9F5F5",
           padding: "20px",
+          position: "relative"
         }}
       >
+        <IconButton 
+          onClick={handleBackClick} 
+          sx={{ position: "absolute", top: "20px", left: "20px", color: "#603F26" }}
+        >
+          <ArrowBackIcon />
+        </IconButton>
         <Box sx={{ textAlign: 'center',
             fontFamily: '"Pacifico", cursive',
             color: "#603F26",
@@ -110,11 +124,25 @@ const DetalhesPlantas = () => {
         </Paper>
       </div>
 
-      <Dialog open={openModal} onClose={handleCloseModal}   PaperProps={{
+      <Dialog open={openModal} onClose={handleCloseModal} PaperProps={{
         sx: {
           backgroundColor: "#E9F5F5",
         }}}>
-        <DialogTitle sx={{ textAlign: 'center' }}>{plant.name} - Dicas de Plantio</DialogTitle>
+        <DialogTitle sx={{ textAlign: 'center' }}>
+          {plant.name} - Dicas de Plantio
+          <IconButton
+            aria-label="close"
+            onClick={handleCloseModal}
+            sx={{
+              position: 'absolute',
+              right: 8,
+              top: 8,
+              color: (theme) => theme.palette.grey[500],
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
         <DialogContent>
           <Typography variant="body1" sx={{ marginBottom: '10px' }}>
             <strong>Dificuldade: </strong>{plant.guide.difficulty}
@@ -130,11 +158,6 @@ const DetalhesPlantas = () => {
             ))}
           </ul>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseModal} color="primary">
-            Fechar
-          </Button>
-        </DialogActions>
       </Dialog>
     </div>
   );
