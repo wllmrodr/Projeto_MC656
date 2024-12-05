@@ -1,11 +1,12 @@
 import { Box, Button, Paper, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { styled } from "@mui/system";
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Header from '../../Header';
 import PlantasCuriosidades from '../../PlantasCuriosidades.js';
 
 const JogoCorrespondencia = () => {
+  // eslint-disable-next-line
   const [detalhes, setDetalhes] = useState([]);
   const [imagens, setImagens] = useState([]);
   const [detalhesEmbaralhados, setDetalhesEmbaralhados] = useState([]);
@@ -13,6 +14,7 @@ const JogoCorrespondencia = () => {
   const [selecionadoDetail, setSelecionadoDetail] = useState(null);
   const [selecionadoImagem, setSelecionadoImagem] = useState(null);
   const [correspondencias, setCorrespondencias] = useState({});
+  // eslint-disable-next-line
   const [cores, setCores] = useState(['#FFD7EE', '#CEEEF8', '#E9F9E5', '#FEF1AB', '#D0C3F1']);
   const [erro, setErro] = useState(null);
 
@@ -23,7 +25,7 @@ const JogoCorrespondencia = () => {
       .map(({ value }) => value);
   };
 
-  const embaralharPlantas = () => {
+  const embaralharPlantas = useCallback(() => {
     const plantasEscolhidas = [];
     while (plantasEscolhidas.length < 5) {
       const plantaAleatoria = PlantasCuriosidades[Math.floor(Math.random() * PlantasCuriosidades.length)];
@@ -51,11 +53,11 @@ const JogoCorrespondencia = () => {
     setSelecionadoDetail(null);
     setSelecionadoImagem(null);
     setErro(null);
-  };
+  }, [cores]);
 
   useEffect(() => {
     embaralharPlantas();
-  }, []);
+  }, [embaralharPlantas]);
 
   // selecao aleatoria de um detalhe sobre alguma planta
   const handleSelectDetail = (detail) => {

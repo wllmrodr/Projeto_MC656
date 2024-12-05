@@ -15,7 +15,7 @@ jobs:
   continuous-integration:
     runs-on: ubuntu-latest  # The job runs on a Ubuntu machine
     env:
-      CI: false # Disables the CI environment variable, this will be enabled after development
+      CI: true
 
     steps:  # Steps in this job
       - uses: actions/checkout@v3   # Checkout(similar to cloning) the repository
