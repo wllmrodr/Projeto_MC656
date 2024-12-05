@@ -15,9 +15,12 @@ import {
   Select,
   InputLabel,
   FormControl,
+  IconButton,
+  Menu,
 } from "@mui/material";
 import { getAuth } from "firebase/auth";
 import Header from "../components/Header";
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const getUserInfo = () => {
   const auth = getAuth();
@@ -102,6 +105,27 @@ const MeuJardim = () => {
     setNovaPlanta({ nome: "", especie: "", foto: "" });
   };
 
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedPlantaId, setSelectedPlantaId] = useState(null);
+
+  const handleMenuClick = (event, plantaId) => {
+    setAnchorEl(event.currentTarget);
+    setSelectedPlantaId(plantaId);  // Armazenando o id da planta selecionada
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleDeletePlanta = () => {
+    if (selectedPlantaId !== null) {
+      const novasPlantas = plantas.filter(planta => planta.id !== selectedPlantaId);
+      salvarPlantasDoUsuario(userId, novasPlantas);
+      setPlantas(novasPlantas);
+      setAnchorEl(null);  // Fechar o menu após a exclusão
+    }
+  };
+
   return (
     <div>
       <Header />
@@ -123,8 +147,20 @@ const MeuJardim = () => {
                   maxWidth: 345,
                   backgroundColor: "#C8E6C9",
                   boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+                  position: "relative",
                 }}
               >
+                <IconButton
+                  sx={{
+                    position: "absolute",
+                    top: 8,
+                    right: 8,
+                    color: "white", // Define a cor do ícone como branca
+                  }}
+                  onClick={(event) => handleMenuClick(event, planta.id)}  // Passando o id da planta
+                >
+                  <MoreVertIcon />
+                </IconButton>
                 <CardMedia
                   component="img"
                   height="140"
@@ -146,6 +182,14 @@ const MeuJardim = () => {
                   </Typography>
                 </CardContent>
               </Card>
+              <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleMenuClose}
+              >
+                <MenuItem onClick={handleMenuClose}>Editar</MenuItem>
+                <MenuItem onClick={handleDeletePlanta}>Excluir</MenuItem>  {/* Ação de excluir */}
+              </Menu>
             </Grid>
           ))}
           <Grid item xs={12} sm={6} md={4}>
