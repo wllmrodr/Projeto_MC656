@@ -43,35 +43,21 @@ const MeuJardim = () => {
   const [usuarioNome, setUsuarioNome] = useState("Usuário");
   const [openDialog, setOpenDialog] = useState(false);
   const [novaPlanta, setNovaPlanta] = useState({ nome: "", especie: "", foto: "" });
+  const [openRegaDialog, setOpenRegaDialog] = useState(false);  // Estado para o diálogo da data de rega
+  const [dataRega, setDataRega] = useState("");  // Estado para armazenar a data da rega selecionada
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedPlantaId, setSelectedPlantaId] = useState(null);
 
   const especiesDisponiveis = [
-    "Alface",
-    "Alho",
-    "Cebolinha",
-    "Cenoura",
-    "Ervilha",
-    "Feijão",
-    "Girassol",
-    "Manjericão",
-    "Menta",
-    "Morango",
-    "Salsa",
-    "Tomate",
+    "Alface", "Alho", "Cebolinha", "Cenoura", "Ervilha", "Feijão", "Girassol",
+    "Manjericão", "Menta", "Morango", "Salsa", "Tomate",
   ];
 
   const fotosEspecies = {
-    "Alface": "/images/plantas/alface.jpg",
-    "Alho": "/images/plantas/alho.jpg",
-    "Cebolinha": "/images/plantas/cebolinha.jpg",
-    "Cenoura": "/images/plantas/cenoura.jpg",
-    "Ervilha": "/images/plantas/ervilha.jpg",
-    "Feijão": "/images/plantas/feijao.jpg",
-    "Girassol": "/images/plantas/girassol.jpg",
-    "Manjericão": "/images/plantas/manjericao.jpg",
-    "Menta": "/images/plantas/menta.jpg",
-    "Morango": "/images/plantas/morango.jpg",
-    "Salsa": "/images/plantas/salsa.jpg",
-    "Tomate": "/images/plantas/tomate.jpg",
+    "Alface": "/images/plantas/alface.jpg", "Alho": "/images/plantas/alho.jpg", "Cebolinha": "/images/plantas/cebolinha.jpg",
+    "Cenoura": "/images/plantas/cenoura.jpg", "Ervilha": "/images/plantas/ervilha.jpg", "Feijão": "/images/plantas/feijao.jpg",
+    "Girassol": "/images/plantas/girassol.jpg", "Manjericão": "/images/plantas/manjericao.jpg", "Menta": "/images/plantas/menta.jpg",
+    "Morango": "/images/plantas/morango.jpg", "Salsa": "/images/plantas/salsa.jpg", "Tomate": "/images/plantas/tomate.jpg",
   };
 
   useEffect(() => {
@@ -105,12 +91,9 @@ const MeuJardim = () => {
     setNovaPlanta({ nome: "", especie: "", foto: "" });
   };
 
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedPlantaId, setSelectedPlantaId] = useState(null);
-
   const handleMenuClick = (event, plantaId) => {
     setAnchorEl(event.currentTarget);
-    setSelectedPlantaId(plantaId);  // Armazenando o id da planta selecionada
+    setSelectedPlantaId(plantaId);
   };
 
   const handleMenuClose = () => {
@@ -122,99 +105,82 @@ const MeuJardim = () => {
       const novasPlantas = plantas.filter(planta => planta.id !== selectedPlantaId);
       salvarPlantasDoUsuario(userId, novasPlantas);
       setPlantas(novasPlantas);
-      setAnchorEl(null);  // Fechar o menu após a exclusão
+      setAnchorEl(null);
+    }
+  };
+
+  const handleAddRega = () => {
+    if (selectedPlantaId !== null && dataRega) {
+      const novasPlantas = plantas.map(planta =>
+        planta.id === selectedPlantaId ? { ...planta, ultimaRega: dataRega } : planta
+      );
+      salvarPlantasDoUsuario(userId, novasPlantas);
+      setPlantas(novasPlantas);
+      setOpenRegaDialog(false);  // Fechar o diálogo da rega após adicionar
+      setDataRega("");  // Limpar a data
     }
   };
 
   return (
     <div>
       <Header />
-      <div
-        style={{
-          backgroundColor: "#E3F2FD",
-          minHeight: "100vh",
-          padding: "20px",
-        }}
-      >
+      <div style={{ backgroundColor: "#E3F2FD", minHeight: "100vh", padding: "20px" }}>
         <h1 style={{ textAlign: "center", color: "#146356" }}>
           Jardim de {usuarioNome}
         </h1>
         <Grid container spacing={3}>
           {plantas.map((planta) => (
             <Grid item xs={12} sm={6} md={4} key={planta.id}>
-              <Card
-                sx={{
-                  maxWidth: 345,
-                  backgroundColor: "#C8E6C9",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-                  position: "relative",
-                }}
-              >
-                <IconButton
-                  sx={{
-                    position: "absolute",
-                    top: 8,
-                    right: 8,
-                    color: "white", // Define a cor do ícone como branca
-                  }}
-                  onClick={(event) => handleMenuClick(event, planta.id)}  // Passando o id da planta
-                >
+              <Card sx={{ maxWidth: 345, backgroundColor: "#C8E6C9", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", position: "relative" }}>
+                <IconButton sx={{ position: "absolute", top: 8, right: 8, color: "white" }} onClick={(event) => handleMenuClick(event, planta.id)}>
                   <MoreVertIcon />
                 </IconButton>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image={planta.foto}
-                  alt={planta.nome}
-                />
+                <CardMedia component="img" height="140" image={planta.foto} alt={planta.nome} />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {planta.nome}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Espécie: {planta.especie}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Data de Nascimento: {planta.dataNascimento}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Última Rega: {planta.ultimaRega}
-                  </Typography>
+                  <Typography gutterBottom variant="h5" component="div">{planta.nome}</Typography>
+                  <Typography variant="body2" color="text.secondary">Espécie: {planta.especie}</Typography>
+                  <Typography variant="body2" color="text.secondary">Data de Nascimento: {planta.dataNascimento}</Typography>
+                  <Typography variant="body2" color="text.secondary">Última Rega: {planta.ultimaRega}</Typography>
                 </CardContent>
               </Card>
-              <Menu
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleMenuClose}
-              >
+              <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
                 <MenuItem onClick={handleMenuClose}>Editar</MenuItem>
-                <MenuItem onClick={handleDeletePlanta}>Excluir</MenuItem>  {/* Ação de excluir */}
+                <MenuItem onClick={() => setOpenRegaDialog(true)}>Adicionar Nova Rega</MenuItem>
+                <MenuItem onClick={handleDeletePlanta}>Excluir</MenuItem>
               </Menu>
             </Grid>
           ))}
           <Grid item xs={12} sm={6} md={4}>
-            <Card
-              sx={{
-                maxWidth: 345,
-                backgroundColor: "#B3E5FC",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                textAlign: "center",
-                height: "180px",
-              }}
-            >
-              <Typography gutterBottom variant="h5" component="div">
-                Nova Planta
-              </Typography>
-              <Button variant="contained" color="primary" onClick={() => setOpenDialog(true)}>
-                Adicionar
-              </Button>
+            <Card sx={{ maxWidth: 345, backgroundColor: "#B3E5FC", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", height: "180px" }}>
+              <Typography gutterBottom variant="h5" component="div">Nova Planta</Typography>
+              <Button variant="contained" color="primary" onClick={() => setOpenDialog(true)}>Adicionar</Button>
             </Card>
           </Grid>
         </Grid>
+
+        {/* Dialog para adicionar a rega */}
+        <Dialog open={openRegaDialog} onClose={() => setOpenRegaDialog(false)}>
+          <DialogTitle>Adicionar Nova Rega</DialogTitle>
+          <DialogContent>
+            <TextField
+              fullWidth
+              margin="normal"
+              label="Data da Rega"
+              type="date"
+              value={dataRega}
+              onChange={(e) => setDataRega(e.target.value)}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setOpenRegaDialog(false)}>Cancelar</Button>
+            <Button onClick={handleAddRega} variant="contained" color="primary">Adicionar</Button>
+          </DialogActions>
+        </Dialog>
+
+        {/* Dialog para adicionar nova planta */}
         <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
           <DialogTitle>Adicionar Nova Planta</DialogTitle>
           <DialogContent>
@@ -226,9 +192,7 @@ const MeuJardim = () => {
                 onChange={(e) => setNovaPlanta({ ...novaPlanta, especie: e.target.value })}
               >
                 {especiesDisponiveis.map((especie) => (
-                  <MenuItem key={especie} value={especie}>
-                    {especie}
-                  </MenuItem>
+                  <MenuItem key={especie} value={especie}>{especie}</MenuItem>
                 ))}
               </Select>
             </FormControl>
@@ -242,9 +206,7 @@ const MeuJardim = () => {
           </DialogContent>
           <DialogActions>
             <Button onClick={() => setOpenDialog(false)}>Cancelar</Button>
-            <Button onClick={handleAddPlanta} variant="contained" color="primary">
-              Adicionar
-            </Button>
+            <Button onClick={handleAddPlanta} variant="contained" color="primary">Adicionar</Button>
           </DialogActions>
         </Dialog>
       </div>
