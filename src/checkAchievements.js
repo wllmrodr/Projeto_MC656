@@ -1,6 +1,6 @@
 
-import { addAchievementToUser } from "firebase/achievements";
-import { achievements } from "firebase/achievements";
+import { addAchievementToUser } from '../firebase/achievements';
+import { achievements } from '/firebase/achievements';
 
 export const checkAndUnlockAchievements = async (userId, action) => {
   const conditions = {
@@ -14,4 +14,3 @@ export const checkAndUnlockAchievements = async (userId, action) => {
     await addAchievementToUser(userId, achievementId);
   }
 };
-
