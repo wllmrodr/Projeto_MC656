@@ -13,11 +13,7 @@ const Header = () => {
             <Link to="/galeria" style={{ color: "white", textDecoration: "none" }}>Galeria</Link>
           </li>
           <li>
-            <Link to="/meu-jardim" style={{ color: "white", textDecoration: "none" }}>
-              <button style={{ backgroundColor: "#4CAF50", color: "white", padding: "10px 20px", border: "none", borderRadius: "5px" }}>
-                Meu Jardim
-              </button>
-            </Link>
+            <Link to="/meu-jardim" style={{ color: "white", textDecoration: "none" }}>Meu Jardim</Link>
           </li>
           <li>
             <Link to="/login" style={{ color: "white", textDecoration: "none" }}>Login</Link>
