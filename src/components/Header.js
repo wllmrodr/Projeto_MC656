@@ -12,7 +12,8 @@ const buttonStyle = {
   textDecoration: "none",
   display: "inline-block",
   textAlign: "center",
-  transition: "background-color 0.3s ease"
+  transition: "background-color 0.3s ease",
+  cursor: "pointer", // Adiciona um cursor de ponteiro para indicar que é clicável
 };
 
 const inactiveButtonStyle = {
@@ -70,7 +71,16 @@ const Header = () => {
         </ul>
       </nav>
       {isLoggedIn && (
-        <button onClick={handleLogout} style={{ ...buttonStyle, marginLeft: "auto" }}>
+        <button 
+          onClick={handleLogout} 
+          style={{ 
+            ...buttonStyle, 
+            marginLeft: "auto",
+            '&:hover': {
+              backgroundColor: "#81C784", // Cor de fundo ao passar o mouse
+            },
+          }}
+        >
           Logout
         </button>
       )}
