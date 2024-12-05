@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import PlantasCuriosidades from '../../PlantasCuriosidades.js';
-import Header from '../../Header';
-import { Button, Typography, Box, Paper } from '@mui/material';
+import { Box, Button, Paper, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { styled } from "@mui/system";
+import { useEffect, useState } from 'react';
+import Header from '../../Header';
+import PlantasCuriosidades from '../../PlantasCuriosidades.js';
 
 const JogoCorrespondencia = () => {
   const [detalhes, setDetalhes] = useState([]);

@@ -1,6 +1,6 @@
 name: Continuous Integration
 
-on:           # This workflow is triggered on pushes and PRs to the master branch.
+on:           # This workflow is triggered on pushes and PRs to the master and develop branch.
   push:
     branches:
       - main
@@ -14,6 +14,8 @@ on:           # This workflow is triggered on pushes and PRs to the master branc
 jobs:
   continuous-integration:
     runs-on: ubuntu-latest  # The job runs on a Ubuntu machine
+    env:
+      CI: false # Disables the CI environment variable, this will be enabled after development
 
     steps:  # Steps in this job
       - uses: actions/checkout@v3   # Checkout(similar to cloning) the repository
