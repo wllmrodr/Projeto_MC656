@@ -14,8 +14,35 @@ function Cadastro() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const handleSignup = async () => {
+    const validatePassword = (password) => {
+        const minLength = 6;
+        const maxLength = 10;
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasNumber = /[0-9]/.test(password);
+        const isValidLength = password.length >= minLength && password.length <= maxLength;
+
+        if (!isValidLength) {
+            return "A senha deve ter entre 6 e 10 caracteres.";
+        }
+        if (!hasUpperCase) {
+            return "A senha deve conter pelo menos um caractere maiúsculo.";
+        }
+        if (!hasNumber) {
+            return "A senha deve conter pelo menos um número.";
+        }
+        return null;
+    };
+
+    const handleSignup = async (e) => {
+        e.preventDefault();
         setLoading(true);
+
+        const passwordError = validatePassword(password);
+        if (passwordError) {
+            setLoading(false);
+            setError(passwordError);
+            return;
+        }
 
         try {
             // cria usuario
